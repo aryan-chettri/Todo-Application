@@ -44,12 +44,24 @@ document.querySelector('.button-CreateABlog').addEventListener('click', function
             alert("The blog is empty");
         }
         else{
+
+                let now = new Date();
+
+                let timeElement = document.createElement('p');
+                timeElement.className = 'timeElement';
+
+                let time = now.toLocaleTimeString();
+
+                timeElement.textContent = `${time}`;
+                
                 const button1 = document.createElement('button');
-                button1.className = '.deleteButton'
+                button1.className = 'deleteButton'
                 button1.textContent = 'Delete Blog'
                 const blogs = document.createElement('h1');
                 blogs.textContent = document.querySelector('.input').value;
+                
                 document.body.appendChild(blogs);
+                document.body.appendChild(timeElement);
                 blogs.appendChild(button1);
 
                 document.querySelector('.input').value = '';
@@ -57,11 +69,12 @@ document.querySelector('.button-CreateABlog').addEventListener('click', function
                 button1.addEventListener('click', function(){
                     console.log("The delete is clicked");
                     blogs.remove();
+                    timeElement.remove();
                 })
                 // document.querySelector('.deleteButton').addEventListener('click', function(){
                 //     console.log("The delete is clicked");
                 // });                
         }                
     });    
-});
+},{once: true});
 
